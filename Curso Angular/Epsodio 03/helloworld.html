@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html ng-app="helloWorld">
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+<title>Documento sem título</title>
+</head>
+
+<body ng-controller='helloWorldControler'>
+
+<h1>{{title}}</h1>
+
+
+
+
+
+<script>
+angular.module('helloWorld', []).controller('helloWorldControler', ['$scope', function ($scope) {
+  $scope.title = 'minha primeira app';
+  
+  
+
+
+  
+}]);
+	
+</script>
+</body>
+</html>

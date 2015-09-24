@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AACA,IAAK;EACJ,SAAS,EAAE,IAAI;;AAGhB,gCAAK;EACJ,KAAK,EAAE,OAAO;EACd,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,SAAS;EACjB,4CAAG;IACF,WAAW,EAAE,IAAI;;AAInB,KAAM;EAEL,MAAM,EAAE,cAAc;;AAGvB,SAAU;EAET,MAAM,EAAE,aAAa;;AAGtB,QAAS;EAER,MAAM,EAAE,gBAAgB",
+"sources": ["../scss/estiloMestre2.scss"],
+"names": [],
+"file": "estiloMestre2.css"
+}

@@ -1,0 +1,32 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> 
+
+ * @import "compass/reset";
+* @import "compass/css3";*/
+@import "compass";
+@import "icon/*.png"
+@import all-icon-sprites;
+
+$default-text-shadow-color: rgba(red, 0.6);
+$defalt-text-shadow-blur: 2px;
+$default-text-shadow-v-offset: 1px;
+.sombra {
+	@include single-text-shadow;
+}
+
+.box {
+	border: 1px solid red;
+	display: block;
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;	
+	background: green;
+	@include transition;
+	&:hover {
+		background: blue;
+		@include box-shadow(red 2px 2px 10px);
+	}
+	background-image: image-url('backgroung/back2.jpg');
+}

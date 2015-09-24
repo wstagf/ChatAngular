@@ -1,0 +1,22 @@
+/* Scss Document */
+body {
+	font: verdana, arial, sans-serif;
+}
+
+p{
+	font-size: 18px;
+	a {
+	 color: red;
+	 &:hover {
+		text-decoration: none; 
+	 }
+	}
+
+
+}
+
+#paragrafo {
+	color: green
+}
+
+

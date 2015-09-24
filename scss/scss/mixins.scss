@@ -1,0 +1,50 @@
+/* Scss Document */
+
+$blue: blue;
+$orange : orange;
+$red: red;
+
+
+@function fixBorder($cor) {
+	@return desaturate(darken($cor, 15%), 10%);
+}
+
+@mixin geraBorda($cor) {
+	@extend .box;
+	background-color: $cor;
+	border-color: fixBorder($cor);
+
+	em {
+		color: fixBorder($cor);
+	}
+}
+
+body {
+	font-size: 20px;
+}
+
+.box {
+	color: #000000;
+	padding: 20px;
+	margin: 20px auto;
+	em {
+		font-weight: bold;
+	}
+	border: 5px solid;
+}
+
+.azul {
+	@include geraBorda($blue);
+}
+
+.outroAzul {
+	background: $blue;
+}
+
+.vermelho {
+	@include geraBorda($red);
+}
+
+.laranja {
+	@include geraBorda($orange);
+}

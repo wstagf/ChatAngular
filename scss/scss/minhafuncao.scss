@@ -1,0 +1,48 @@
+/* Scss Document */
+
+$azul: blue;
+$orange : orange;
+$red: red;
+
+
+@function fixBorder($cor) {
+	@return desaturate(darken($cor, 15%), 10%);
+}
+
+body {
+	font-size: 20px;
+}
+
+.box {
+	color: #000000;
+	padding: 20px;
+	margin: 20px auto;
+	em {
+		font-weight: bold;
+	}
+	border: 5px solid;
+}
+
+.azul {
+	@extend .box;
+	background-color: $azul;
+	border-color: fixBorder($azul);
+}
+
+.outroAzul {
+	background: $azul;
+}
+
+
+
+.vermelho {
+	@extend .box;
+	background-color: $red;
+	border-color: fixBorder($red);
+}
+
+.laranja {
+	@extend .box;
+	background-color: $orange;
+	border-color: fixBorder($orange);
+}

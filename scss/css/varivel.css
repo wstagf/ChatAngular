@@ -1,0 +1,26 @@
+/* Scss Document */
+
+
+body {
+  font-size: 20px; }
+
+.box, .azul, .vermelho, .laranja {
+  color: #000000;
+  padding: 20px;
+  margin: 20px auto; }
+  .box em, .azul em, .vermelho em, .laranja em {
+    font-weight: bold; }
+
+.azul {
+  border: 1px solid #000080; }
+
+.outroAzul {
+  background: #000080; }
+
+.vermelho {
+  border: 1px solid red; }
+
+.laranja {
+  border: 1px solid orange; }
+
+/*# sourceMappingURL=varivel.css.map */

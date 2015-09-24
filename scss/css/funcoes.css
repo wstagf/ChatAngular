@@ -1,0 +1,27 @@
+/* Scss Document */
+body {
+  font-size: 20px; }
+
+.box, .azul, .vermelho, .laranja {
+  color: #000000;
+  padding: 20px;
+  margin: 20px auto;
+  border: 10px solid; }
+  .box em, .azul em, .vermelho em, .laranja em {
+    font-weight: bold; }
+
+.azul {
+  background-color: blue;
+  border-color: #000066; }
+
+.outroAzul {
+  background: blue; }
+
+.vermelho {
+  background-color: red;
+  border-color: #b34d4d; }
+
+.laranja {
+  border-color: orange; }
+
+/*# sourceMappingURL=funcoes.css.map */

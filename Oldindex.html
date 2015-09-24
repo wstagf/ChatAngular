@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="angular.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            resizeScreen();
+            function resizeScreen() {
+                var sizeChatBody = { height: $(document).height() - 80, width: $(document).width() };
+                var chatMensageBox = {
+                    minWidth: sizeChatBody.width -30 - ($('.chatListPeople').width()),
+                    maxWidth: sizeChatBody.width -30 - ($('.chatListPeople').width())
+                };
+                $(".chatBody").css({ 'min-height': sizeChatBody.height + "px" });
+                $(".chatMensageBox").css({ 'min-height': sizeChatBody.height + "px", 'min-width': chatMensageBox.minWidth + "px", 'max-width': chatMensageBox.maxWidth + "px" });
+                $(".chatListPeople").css({ 'min-height': sizeChatBody.height + "px" });
+                $(".chatLogMensage").css({ 'min-height': sizeChatBody.height - 132 + "px" });
+            }
+
+
+
+
+           
+
+            
+        });
+
+         
+
+
+        var app = angular.module('myApp', []);
+        app.controller('personCtrl', function ($scope) {
+
+            $scope.usersInChat = [ 
+                                    { id: 1,  name: "Tancredo", color: 'red'},
+                                    { id: 2, name: "Ted", color: 'blue'},
+                                    { id: 3, name: "Tânia", color: 'green' },
+                                    { id: 4, name: "Thiago", color: 'BlueViolet' }
+                                 ];
+           
+            $scope.mensages = [
+                     { usuario: { id: 1, name: "Tancredo", color: 'red' }, mensagem: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci  eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.", color: "BlueViolet" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: "tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore", color: "black" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: " illum dolore eu feugiat nu", color: "black" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: "sequatin vulputate velit esse molestie ", color: "black" },
+                     { usuario: { id: 2, name: "Ted", color: 'blue' }, mensagem: " sed diam nonummy nibh euismod tincidunt ut la", color: "black" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: "volutpat. Ut wisi enim ad minim veniam, quis nostrud exerc", color: "GreenYellow" },
+                     { usuario: { id: 2, name: "Ted", color: 'blue' }, mensagem: "iquam erat i tation ullamcorper suscipit lobortis ", color: "black" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: "equat. Duis autem vel eum iriure dolor in hendreri", color: "black" },
+                     { usuario: { id: 1, name: "Tancredo", color: 'red' }, mensagem: "mod tincidunt ut laoreet dolore magna", color: "black" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit,oreet dolore magna alnisl ut aliquip ex ea commodo consequl illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.", color: "Fuchsia" },
+                     { usuario: { id: 2, name: "Ted", color: 'blue' }, mensagem: " suscipit lobortis nisl ut aliquip ex ea commodo c", color: "black" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: " tincidunt ut laoreet dolore magna aliqua", color: "black" },
+                     { usuario: { id: 2, name: "Ted", color: 'blue' }, mensagem: "ion ullamcorper suscipit lobortis nisl ut aliquip ex ea commo", color: "black" },
+                     { usuario: { id: 1, name: "Tancredo", color: 'red' }, mensagem: "vel illum dolore eu feugiat nulla", color: "DarkBlue" },
+                     { usuario: { id: 3, name: "Tânia", color: 'green' }, mensagem: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismodm erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tatdo consequat. Duis autem vel eum iriure doloero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.", color: "black" },
+                     { usuario: { id: 1, name: "Tancredo", color: 'red' }, mensagem: "r in hendrerit in vulputate velit esse molestlisis at v", color: "black" },
+            ];
+
+
+            
+        });
+
+    </script>
+    <style>
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Lucida Sans Unicode', Calibri;
+
+        }
+        .chatHeader {
+            min-height: 80px;
+            background: linear-gradient(#BFDFFF, #9FCFFF);
+            overflow: hidden;
+        }
+            .chatHeader h1 {
+                margin: 5px;
+            }
+        .chatBody {
+            overflow: hidden;
+        }
+
+        .chatMensageBox {
+            float: left;
+            overflow: hidden;
+        }
+        .chatListPeople {
+            width: 150px;
+            float: right;
+            background: linear-gradient(#9FCFFF, #91C8FF);
+            overflow-y: scroll;
+            height: 10px;
+            padding: 0px 5px;
+        }
+           .chatListPeople p  {
+                margin: 5px;
+            }
+
+            .chatListPeople h1 {
+                font-size: 12px;
+
+            }
+
+            .chatListPeople ul {
+                list-style: none;
+                margin: 0px;
+                
+            }
+
+        .chatLogMensage {
+            margin: 10px 10px;
+            border: 1px solid #9FCFFF;
+            border-radius: 5px;
+            overflow-y: scroll;
+            padding: 5px;
+            height: 10px;
+
+        }
+
+           .chatLogMensage span  {
+                display: block;
+                margin: 0px 0px 10px 5px;
+            }
+
+        .chatMensageCommand {
+            height: 80px;
+            margin: 10px 10px;
+            border: 1px solid #9FCFFF;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+            .chatMensageCommand p {
+                margin: 5px;
+            }
+
+
+        .chatMsg {
+            font-size: 12px;
+            word-wrap: break-word;
+        }
+
+        .chatMsg img {
+            vertical-align: middle;
+        }
+
+        .chatPeople {
+             font-size: 10px;
+             display: block;
+        }
+
+        .formChatMensageCommand {
+            margin: 5px;
+            resize: none;
+ 
+        }
+        .formChatMensageCommand textarea {
+            resize: none;
+            height: 50px; 
+            margin-top: 5px;
+            float: left;
+            border-radius: 3px;
+        }
+        .buttonInputMensage {
+            margin: 25px 0 0 5px;
+            background-color: #9FCFFF;
+            min-height: 25px;
+            min-width: 100px;
+            float: left;
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #48A4FF;
+            border-radius: 5px;
+        }
+
+
+       
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="personCtrl">
+    <div class="page">
+        <div class="chatHeader">
+            <h1>Chat Teste Siac Sistemas - Thiago Augusto </h1>
+        </div>
+        <div class="chatBody">
+            <div class="chatMensageBox">
+
+                 <div class="chatLogMensage scroll">
+                     
+                     <span class="chatMsg" ng-repeat="msg in mensages"><img src="images/imgAvatar.png" style="float: left" /> <h2 style="font-size: 10px; float: left; color: {{msg.usuario.color}}">{{msg.usuario.name}}</h2><br /><span style="color: {{msg.color}}">{{msg.mensagem}}</span></span>
+                 </div>
+                <!-- html puro 
+                <div class="chatLogMensage scroll">
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" />  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" />  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" />  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" />  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" />  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" />  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </span>
+                    <span class="chatMsg"><img src="images/imgAvatar.png" /> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+
+                    
+                </div> 
+
+                    -->
+                <div class="chatMensageCommand">
+                        <form class="formChatMensageCommand" id="formChatMensageCommand">
+                            <textarea cols="80"  id="textAreaInputMensage"></textarea>
+                            <div class="buttonInputMensage">Enviar</div>
+                        </form>
+                </div> 
+            </div> 
+
+            <!-- html Puro 
+            <div class="chatListPeople">
+                <h1>Usuários Logados</h1>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+                <span class="chatPeople"><img src="images/imgAvatar.png" /> Lorem ipsum </span>
+            </div> 
+            -->
+            <!-- AngularJs -->
+             <div class="chatListPeople" >
+                <h1>Usuários Logados</h1>
+                 <ul>
+                  <li ng-repeat="people in usersInChat ">
+                    <span class="chatPeople"><img src="images/imgAvatar.png" /> <span style="color: {{people.color}}; font-size:12px;">{{people.name}}</span></span> 
+                  </li>
+                </ul>
+             </div>
+        </div>        
+    </div>
+</body>
+</html>

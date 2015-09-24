@@ -1,0 +1,162 @@
+<html ng-app="listaTelefonica">
+<head>
+	<title>Minha app Angular</title>
+	<script src="js/angular.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/material-fullpalette.css"/>
+	<script src="js/jquery-1.10.2.min.js" ></script>
+	<script src="js/ripples.js"></script>
+    <script src="js/material.js"></script>
+	<script src="js/bootstrap.js" ></script>
+    <script>
+        $(document).ready(function() {
+            // This command is used to initialize some elements and make them work properly
+            $.material.init();
+        });
+    </script>
+	<script type="text/javascript">
+		angular.module("listaTelefonica", []);
+		angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope) {
+
+			$scope.app = "Lista Telefonica";
+
+			$scope.contatos = [
+				{nome: "Pedro", telefone: "99998888", cor: "blue"},
+				{nome: "Ana", telefone: "99997777", cor: "yellow"},
+				{nome: "Maria", telefone: "9999666", cor: "red"},
+			];
+
+			$scope.operadoras = [
+				{nome: "Oi", codigo: "14", categoria: "Celular"},
+				{nome: "Claro", codigo: "14", categoria: "Celular"},
+				{nome: "Tim", codigo: "14", categoria: "Celular"},
+				{nome: "Vivo", codigo: "14", categoria: "Celular"},
+				{nome: "Net", codigo: "14", categoria: "Fixo"},
+				{nome: "GVT", codigo: "14", categoria: "Fixo"},
+				{nome: "Oi", codigo: "14", categoria: "Fixo"},
+			];
+
+			$scope.classeDinamicaH4 = "h4Dinamico";
+			$scope.italico = "italico";
+
+
+			/*  pior Método, NUNCA LER O $SCOPE NO CONTROLER
+			$scope.adicionarContato = function () {
+				//console.log($scope.nome);
+				$scope.contatos.push({nome: $scope.nome, telefone: $scope.telefone});
+			}
+			*/
+
+
+			/*  Medio Método, NÃO UTILIZA  OBJETOS
+			$scope.adicionarContato = function (nome, telefone) {
+				//console.log($scope.nome);
+				$scope.contatos.push({nome: nome, telefone: telefone});
+			}
+			*/
+
+
+			$scope.adicionarContato = function(contato) {
+				//console.log($scope.nome);
+				$scope.contatos.push(angular.copy(contato));
+				delete $scope.contato;
+			};
+
+			$scope.apagarContatos = function(contatos) {
+				$scope.contatos = contatos.filter(function(contato) {
+					if (!contato.selecionado) return contato;
+				});
+			};
+
+			$scope.isContatoSelecionado = function(contatos) {
+				return contatos.some(function (contato) {
+					return contato.selecionado;
+				});
+
+				console.log(isContatoSelecionado);
+			};
+
+		});
+
+	</script>
+	<style type="text/css">
+		.jumbotron {
+			width: 400px;
+			text-align: center;
+			margin-top: 10px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.form-control {
+			margin-top: 10px;
+		}
+		.h4Dinamico {
+			color: red;
+		}
+		.italico {
+			font-style: italic;
+		}
+		.selecionado{
+			background-color: yellow !important;
+		}
+
+
+	</style>
+</head>
+<body ng-controller="listaTelefonicaCtrl">
+<div class="jumbotron">
+	<!--  ng-bind, lê no $scpope o valor de umna variavel. <h4 ng-bind="app"></h4>	 -->
+	<h4 ng-class="classeDinamicaH4">{{app}}</h4>
+	<h4 ng-class="[classeDinamicaH4, italico]">{{app}}</h4>
+	<table class="table table-striped" ng-show="contatos.length > 0">
+		<tr>
+			<th></th>
+			<th>Nome</th>
+			<th>Telefone</th>
+			<th>Operadora</th>
+			<th></th>
+		</tr>								<!--  pode ser assim tb  {selecionado: contato.selecionado, italico: contato.selecionado }-->
+		<tr ng-repeat="contato in contatos" ng-class="{'selecionado italico': contato.selecionado }" >
+			<td><input type="checkbox" ng-model="contato.selecionado"/></td>
+			<td>{{contato.nome}}</td>
+			<td>{{contato.telefone}}</td>
+			<td>{{contato.operadora.nome}}</td>
+			<td><div style="min-width: 20px; min-heigtht: 20px;" ng-style="{'background-color' : contato.cor}">&nbsp;</div></td>
+		</tr>
+	</table>
+	<hr/>
+	<!--  ng-model lê na mview e escreve no controler -->
+
+	<input class="form-control" placeholder="Nome" type="text" ng-model="contato.nome"/>
+	<input class="form-control" placeholder="Telefone" type="text" ng-model="contato.telefone"/>
+
+
+	<!--  operadora.nome group by operadora.categoria for operadora in operadoras     passa o objeto inteiro, é a melhor opção para desenvolvimenot orientado a objetos.  -->
+	<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+		<option value="">Selecione uma operadora</option>
+	</select>
+
+	
+
+	<!--  operadora.codigo as operadora.nome group by operadora.categoria for operadora in operadoras   passa somente uma propriedade do objeto
+	<select class="form-control" ng-model="contato.operadora" ng-options="operadora.codigo as operadora.nome group by operadora.categoria for operadora in operadoras">
+		<option value="">Selecione uma operadora</option>
+	</select>
+
+	-->
+
+
+	<!--  ng-click aciona uma função a partir do evento, ng-soubleclick, ng-focus, etc -->	
+	<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button>
+	<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-hide="!isContatoSelecionado(contatos)">Apagar Contatos</button>
+	<!--  ng-if interage com o DOM e adiciona o botao, enquanto ng-hide e ng-show somente faz  sumir/aparecer com css display none;  ng-if é melhor para performace -->		
+	<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos com if</button>
+</div>
+
+<!--  ng-include inclui elementos na pagina, " ' página '  "  utiliza duas aspas para escapar do scope e procurar paginas no codigo, se fosse " pagina " ele irira procurar uma variavel no $scope -->	
+<div ng-include="'rodape.html'">
+</div>
+
+</body>
+</html>

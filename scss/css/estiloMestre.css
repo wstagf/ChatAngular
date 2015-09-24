@@ -1,0 +1,15 @@
+/* Scss Document */
+body {
+  font: verdana, arial, sans-serif; }
+
+p {
+  font-size: 18px; }
+  p a {
+    color: red; }
+    p a:hover {
+      text-decoration: none; }
+
+#paragrafo {
+  color: green; }
+
+/*# sourceMappingURL=estiloMestre.css.map */

@@ -1,0 +1,38 @@
+/* Scss Document */
+
+$azul: #000080;
+
+
+body {
+	font-size: 20px;
+}
+
+.box {
+	color: #000000;
+	padding: 20px;
+	margin: 20px auto;
+	em {
+		font-weight: bold;
+	}
+}
+
+.azul {
+	@extend .box;
+	border: 1px solid $azul;
+}
+
+.outroAzul {
+	background: $azul;
+}
+
+
+
+.vermelho {
+	@extend .box;
+	border: 1px solid red;
+}
+
+.laranja {
+	@extend .box;
+	border: 1px solid orange;
+}
